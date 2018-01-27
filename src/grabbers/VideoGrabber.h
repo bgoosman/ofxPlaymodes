@@ -35,6 +35,7 @@ private:
     void newFrame(ofPixels & frame);
 	float fps;
 	VideoFrame frame;
+    bool isSetup = false;
 };
 }
 

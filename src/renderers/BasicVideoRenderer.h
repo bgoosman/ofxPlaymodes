@@ -22,7 +22,7 @@ public:
 	virtual ~BasicVideoRenderer();
 
 	void setup(VideoSource & source);
-
+    ofTexture& getNextTexture();
 	void draw();
 	void draw(int x,int y,int w,int h);
 

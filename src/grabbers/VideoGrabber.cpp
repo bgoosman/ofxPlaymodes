@@ -15,6 +15,7 @@ VideoGrabber::~VideoGrabber(){
 }
 
 bool VideoGrabber::initGrabber(int w, int h){
+    isSetup = true;
 	bool ret = ofVideoGrabber::initGrabber(w,h,false);
 	frame = VideoFrame::newVideoFrame(getPixelsRef());
 	return ret;
@@ -25,10 +26,12 @@ VideoFrame VideoGrabber::getNextVideoFrame(){
 }
 
 void VideoGrabber::update(){
-	ofVideoGrabber::update();
-	if(isFrameNew()){
-		newFrame(getPixelsRef());
-	}
+    if (isSetup) {
+        ofVideoGrabber::update();
+        if(isFrameNew()){
+            newFrame(getPixelsRef());
+        }
+    }
 }
 
 void VideoGrabber::newFrame(ofPixels & pixels){

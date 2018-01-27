@@ -33,8 +33,8 @@ void VideoBuffer::setup(VideoSource & source, int size, bool allocateOnSetup){
 			videoFrame.getTextureRef();
 			newVideoFrame(videoFrame);
 		}
+        resume();
 	}
-	resume();
 	microsOneSec=-1;
 }
 

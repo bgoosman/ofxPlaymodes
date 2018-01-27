@@ -6,7 +6,7 @@
  */
 
 #include "BasicVideoRenderer.h"
-#include "VideoFrame.h"
+#include "frames/VideoFrame.h"
 
 namespace ofxPm{
 BasicVideoRenderer::BasicVideoRenderer(VideoSource & source) {
@@ -30,6 +30,11 @@ void BasicVideoRenderer::draw(){
 	if(frame!=NULL){
 		frame.getTextureRef().draw(0,0);
 	}
+}
+    
+ofTexture& BasicVideoRenderer::getNextTexture() {
+    VideoFrame frame = source->getNextVideoFrame();
+    return frame.getTextureRef();
 }
 	
 void BasicVideoRenderer::draw(int x,int y,int w,int h){

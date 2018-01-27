@@ -8,7 +8,7 @@
 #ifndef VIDEOSOURCE_H_
 #define VIDEOSOURCE_H_
 
-#include "VideoFrame.h"
+#include "frames/VideoFrame.h"
 
 namespace ofxPm{
 class VideoSource{

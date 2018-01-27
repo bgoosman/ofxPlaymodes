@@ -18,6 +18,7 @@
  ***********************************************************************/
 
 #include "ofxObjCPointer.h"
+#include "Poco/ScopedLock.h"
 using Poco::ScopedLock;
 
 ofxObjCPointer::ofxObjCPointer() {

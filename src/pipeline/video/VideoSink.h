@@ -8,7 +8,7 @@
 #ifndef VIDEOSINK_H_
 #define VIDEOSINK_H_
 
-#include "VideoFrame.h"
+#include "frames/VideoFrame.h"
 #include "VideoSource.h"
 
 namespace ofxPm{

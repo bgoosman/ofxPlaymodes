@@ -8,7 +8,7 @@
 #ifndef VIDEOBUFFER_H_
 #define VIDEOBUFFER_H_
 
-#include "VideoFrame.h"
+#include "frames/VideoFrame.h"
 #include "pmUtils.h"
 #include "Buffer.h"
 #include "VideoSource.h"

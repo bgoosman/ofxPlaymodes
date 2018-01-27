@@ -16,3 +16,5 @@ obj/
 bin/
 build/
 !data/
+/example-pmAV/ofxPlaymodes2012-3-av.xcodeproj/project.xcworkspace
+/example-pmAV/ofxPlaymodes2012-3-av.xcodeproj/xcuserdata
