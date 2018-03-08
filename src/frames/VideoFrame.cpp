@@ -84,6 +84,7 @@ namespace ofxPm
     VideoFrame::~VideoFrame() {}
 
 	VideoFrame VideoFrame::newVideoFrame(const ofPixels & videoFrame){
+        assert(videoFrame.getNumChannels() > 0 && videoFrame.getTotalBytes() > 0 && videoFrame.getWidth() > 1);
 		VideoFormat format(videoFrame);
 		poolMutex.lock();
 		if (!(*pool)[format].empty()) {

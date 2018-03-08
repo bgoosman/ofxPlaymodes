@@ -21,6 +21,10 @@ void BasicVideoRenderer::setup(VideoSource & source){
 	this->source = &source;
 }
 
+VideoSource* BasicVideoRenderer::getSource() {
+	return this->source;
+}
+
 BasicVideoRenderer::~BasicVideoRenderer() {
 	// TODO Auto-generated destructor stub
 }

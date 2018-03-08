@@ -221,7 +221,7 @@ int VideoHeader::getNextPosition(){
 			}
 			
 			// clamp position to it's limits ...
-			if(playing) position=CLAMP(position,double(inAbsFrame),double(outAbsFrame));
+      		if(playing) position=CLAMP(position,double(inAbsFrame),double(outAbsFrame));
 			else position=CLAMP(position,double(lastAbsFrame),double(totalNumFr));
 			
 			

@@ -23,12 +23,15 @@ VideoRate::~VideoRate() {
 
 
 void VideoRate::setup(VideoSource & _source, float fps){
+    if (source != nullptr) {
+		ofRemoveListener(source->newFrameEvent, this, &VideoRate::newVideoFrame);
+		ofRemoveListener(ofEvents().update, this, &VideoRate::glThreadUpdate);
+	}
 	source = &_source;
-	ofAddListener(source->newFrameEvent,this,&VideoRate::newVideoFrame);
+	ofAddListener(source->newFrameEvent, this, &VideoRate::newVideoFrame);
 	setFps(fps);
 	front = _source.getNextVideoFrame();
-	//startThread(true,false);
-	ofAddListener(ofEvents().update,this,&VideoRate::glThreadUpdate);
+	ofAddListener(ofEvents().update, this, &VideoRate::glThreadUpdate);
 }
 
 VideoFrame VideoRate::getNextVideoFrame(){

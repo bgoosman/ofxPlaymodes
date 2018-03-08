@@ -21,6 +21,7 @@ public:
 	BasicVideoRenderer(VideoSource & source);
 	virtual ~BasicVideoRenderer();
 
+	VideoSource* getSource();
 	void setup(VideoSource & source);
     ofTexture& getNextTexture();
 	void draw();
