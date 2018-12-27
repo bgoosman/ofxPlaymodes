@@ -23,6 +23,7 @@ public:
 
 	VideoSource* getSource();
 	void setup(VideoSource & source);
+	ofTexture& getCurrentTexture();
     ofTexture& getNextTexture();
 	void draw();
 	void draw(int x,int y,int w,int h);

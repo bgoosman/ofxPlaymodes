@@ -71,7 +71,7 @@ void VideoMixerGPU::newVideoFrame(VideoFrame & frame){
 	shader.begin();
 	shader.setUniformTexture("tex0",frame.getTextureRef(),0);
 	shader.setUniformTexture("tex1",source2->getNextVideoFrame().getTextureRef(),1);
-	ofRect(0,0,frame.getWidth(),frame.getHeight());
+	ofDrawRectangle(0,0,frame.getWidth(),frame.getHeight());
 	shader.end();
 	back.getFboRef().end();
 

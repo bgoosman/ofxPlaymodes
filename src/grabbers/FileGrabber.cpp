@@ -18,7 +18,7 @@ FileGrabber::~FileGrabber() {
 }
 
 VideoFrame FileGrabber::getNextVideoFrame(){
-    return VideoFrame::newVideoFrame(getPixelsRef());
+    return VideoFrame::newVideoFrame(getPixels());
 }
 
 void FileGrabber::update(){

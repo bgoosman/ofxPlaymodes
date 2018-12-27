@@ -156,17 +156,17 @@ namespace ofxPm
 
 		if(stopped==true) ofSetColor(255,0,0);
 		else ofSetColor(0,120,255);
-		ofLine(PMDRAWSPACING,650,length,650);
+		ofDrawLine(PMDRAWSPACING,650,length,650);
 		for(int i=0;i<size();i++){
 			ofSetColor(0,120,255);
 			// draw wave
-			if(i%2==0) ofRect((oneLength*i)+PMDRAWSPACING,650-frames[i]->getAverageValue()*150,oneLength*2,(frames[i]->getAverageValue()*450+1));
+			if(i%2==0) ofDrawRectangle((oneLength*i)+PMDRAWSPACING,650-frames[i]->getAverageValue()*150,oneLength*2,(frames[i]->getAverageValue()*450+1));
 			// draw grid
 			float X = fmod(i,source->getFps());
 			if(X<1.0)
 			{
 				ofSetColor(0,255,255);
-				ofLine((oneLength*i)+PMDRAWSPACING,650,(oneLength*i)+PMDRAWSPACING,640);
+				ofDrawLine((oneLength*i)+PMDRAWSPACING,650,(oneLength*i)+PMDRAWSPACING,640);
 				ofDrawBitmapString(ofToString(float(size()-i)/source->getFps()),(oneLength*i)+PMDRAWSPACING,635);
 				// + " s"
 			}

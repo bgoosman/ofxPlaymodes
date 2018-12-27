@@ -43,7 +43,8 @@ public:
 
 	VideoFrame getNextVideoFrame();               // the last video frame in the buffer
 
-
+    void setBufIndex(int bufIndex);
+    int bufIndex = 0;
 
 
 
@@ -83,6 +84,7 @@ protected:
     int framesOneSec;
     int64_t microsOneSec;
     int realFps;
+	int lastWrittenPosition = 0;
 };
 }
 #endif /* VIDEOBUFFER_H_ */

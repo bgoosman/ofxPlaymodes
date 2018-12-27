@@ -24,7 +24,7 @@ ofxOscEventsReceiver::~ofxOscEventsReceiver(){
 	ofxOscReceiver::ProcessMessage(m,remoteEndpoint);
 	
 	ofxOscMessage message;
-	getNextMessage(&message);
+	getNextMessage(message);
 	ofNotifyEvent(newOscMessage,message);
 }
 }

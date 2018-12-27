@@ -121,9 +121,9 @@ namespace ofxPm
 		
 		// draw in & out lines
 		ofSetLineWidth(1.0);
-		ofLine(inPos,PMDRAWELEMENTSY+10-audioBuffDrawPos,inPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
-		ofLine(outPos,PMDRAWELEMENTSY+10-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
-		ofLine(inPos,PMDRAWELEMENTSY+60-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
+		ofDrawLine(inPos,PMDRAWELEMENTSY+10-audioBuffDrawPos,inPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
+		ofDrawLine(outPos,PMDRAWELEMENTSY+10-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
+		ofDrawLine(inPos,PMDRAWELEMENTSY+60-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+60-audioBuffDrawPos);
 		// draw inPos triangle
 		ofBeginShape();
 		ofVertex(inPos,PMDRAWELEMENTSY+10-audioBuffDrawPos);
@@ -147,18 +147,18 @@ namespace ofxPm
 			ofSetLineWidth(3.0);
 			ofSetColor(255,0,0);
 		}
-		ofLine(currentLength+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLength+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+60);
-		ofRect(PMDRAWSPACING,PMDRAWELEMENTSY,-100,10);
+		ofDrawLine(currentLength+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLength+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+60);
+		ofDrawRectangle(PMDRAWSPACING,PMDRAWELEMENTSY,-100,10);
 		// we draw the lines of the crossfade area
 		ofSetColor(64,128,128);
 		ofSetLineWidth(1.0);
 		// the limits
-		ofLine(currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);
-		ofLine(currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);
+		ofDrawLine(currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);
+		ofDrawLine(currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);
 		// the ramp
 		ofSetColor(0,128,128);
-		ofLine(currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);		
-		ofLine(currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50,inPos,PMDRAWELEMENTSY+10-audioBuffDrawPos);		
+		ofDrawLine(currentLengthOutDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos,outPos,PMDRAWELEMENTSY+10-audioBuffDrawPos+50);		
+		ofDrawLine(currentLengthInDeclick+PMDRAWSPACING,PMDRAWELEMENTSY+10-audioBuffDrawPos+50,inPos,PMDRAWELEMENTSY+10-audioBuffDrawPos);		
 		ofPopStyle();
 		
 	}
@@ -394,7 +394,7 @@ namespace ofxPm
 			// setting length()
 			markOut.setIndex(nextLength);		
 			// control out of bounds ...
-			if(markOut.getIndex() < 0) markOut.setIndex(0);
+//			if(markOut.getIndex() < 0) markOut.setIndex(0);
 			if(markOut.getIndex() > aBuffer->getUsedSizeInSamples()-1) markOut.setIndex(aBuffer->getUsedSizeInSamples()-1);
 		}
 		if((!isCrossfading)&&(inChanged))
@@ -463,7 +463,7 @@ namespace ofxPm
 		
 		// control bounds of inSamples
 		if (inSamples>=aBuffer->getUsedSizeInSamples()) inSamples = aBuffer->getUsedSizeInSamples()-1;
-		else if (inSamples <0) inSamples=0;
+//		else if (inSamples <0) inSamples=0;
 		
 		//to keep tick count on renderer working
 		resetTick();
@@ -581,7 +581,7 @@ namespace ofxPm
 		{
 			markOut.setIndex(markIn.getIndex() + this->length);
 			// control out of bounds ...
-			if(markOut.getIndex() < 0) markOut.setIndex(0);
+//			if(markOut.getIndex() < 0) markOut.setIndex(0);
 			if(markOut.getIndex() > aBuffer->getUsedSizeInSamples()-1) markOut.setIndex(aBuffer->getUsedSizeInSamples()-1);			
 		}
 		// control the case where length goes beyond ranges
@@ -593,7 +593,7 @@ namespace ofxPm
 		{
 			markOut.setIndex(markIn.getIndex() + this->length);
 			// control out of bounds ...
-			if(markOut.getIndex() < 0) markOut.setIndex(0);
+//			if(markOut.getIndex() < 0) markOut.setIndex(0);
 			if(markOut.getIndex() > aBuffer->getUsedSizeInSamples()-1) markOut.setIndex(aBuffer->getUsedSizeInSamples()-1);
 			
 		}

@@ -16,82 +16,89 @@
 // controls the position in a buffer
 // based on speed, delay, fps and loop in/out
 
-namespace ofxPm{
-class VideoHeader:public VideoSink, public VideoSource{
-public:
-	
-    VideoHeader(VideoBuffer & buffer);
-    VideoHeader();
-    ~VideoHeader();
+namespace ofxPm {
+    class VideoHeader : public VideoSink, public VideoSource {
+    public:
 
-    void setup(VideoBuffer & buffer);
-    void draw();
-    VideoFrame getNextVideoFrame();
-	VideoFrame getVideoFrame(int index);
-    int getNextPosition();
-    VideoBuffer *getBuffer();
-	
-	// delay
-    int		getDelayMs();
-    int		getDelayFrames();
-    float	getDelayPct() ;
-    void	setDelayMs(float delay);
-    void	setDelayFrames(int delay);
-    void	setDelayPct(float pct);
-	// in 
-    float	getIn() ;
-    void	setInMs(float in);
-    void	setInFrames(int in);
-    void	setInPct(float in);
-	// out 
-    float	getOut() ;	
-    void	setOutMs(float out);
-    void	setOutFrames(int out);
-    void	setOutPct(float out);
-	// speed
-    float	getSpeed();
-    void	setSpeed(float speed);
-	// loop mode
-	int		getLoopMode();
-	void	setLoopMode(int loop);
-	bool	isPlaying();
-	void	setPlaying(bool loopMode);
-	void	setPlaying(bool loopMode, float speed);
-	void	setLoopToStart();
+        VideoHeader(VideoBuffer &buffer);
+        VideoHeader();
+        ~VideoHeader();
 
-	// 
-	int		getOpacity();
-	void	setOpacity(int opacity);
-    float	getFps();
-    void	setFps(float fps);
-	void	setDriveMode(int mode);
-	
-	// events
-	void 	receivedLoopEvent(int &i);
+        void setup(VideoBuffer &buffer);
+        void draw();
+        VideoFrame getCurrentVideoFrame();
+        VideoFrame getNextVideoFrame();
+        VideoFrame getVideoFrame(int index);
+        int getNextPosition();
+        VideoBuffer *getBuffer();
+        void pause();
+        void resume();
 
-protected:
-    VideoBuffer		*buffer;			// pointer to the buffer of video frames
+        // delay
+        int getDelayMs();
+        int getDelayFrames();
+        float getDelayPct();
+        void setDelayMs(float delay);
+        void setDelayFrames(int delay);
+        void setDelayPct(float pct);
+        // in
+        float getIn();
+        void setInMs(float in);
+        void setInFrames(int in);
+        void setInPct(float in);
+        // out
+        float getOut();
+        void setOutMs(float out);
+        void setOutFrames(int out);
+        void setOutPct(float out);
+        // speed
+        float getSpeed();
+        void setSpeed(float speed);
+        // loop mode
+        int getLoopMode();
+        void setLoopMode(int loop);
+        bool isPlaying();
+        void setPlaying(bool loopMode);
+        void setPlaying(bool loopMode, float speed);
+        void setLoopToStart();
 
-    Timestamp		positionTS;
-    TimeDiff		oneFrame;
+        //
+        int getOpacity();
+        void setOpacity(int opacity);
+        float getFps();
+        void setFps(float fps);
+        void setDriveMode(int mode);
 
-    double			fps;				// framerate
-    double			position;			// position expresses number of frames since start
-    int				currentPos;
-    double 			speed;
-    int 			delay;
-    double 			in, out;
-	int				opacity;
+        // events
+        void receivedLoopEvent(int &i);
 
-	//	OF_LOOP_NONE=0x01,
-	//	OF_LOOP_PALINDROME=0x02,
-	//	OF_LOOP_NORMAL=0x03
+        void setCurrentFrame(int index);
 
-    bool			playing;
-	int				loopMode;
-	bool			loopStart;
-	
-	int				driveMode; // 0 : based on time // 1 : based on audio which controls it through delay param.
-};
+    protected:
+        int currentFrameIndex;
+        VideoBuffer *buffer;            // pointer to the buffer of video frames
+
+        Timestamp positionTS;
+        TimeDiff oneFrame;
+
+        double fps;                // framerate
+        double position;            // position expresses number of frames since start
+        int currentPos;
+        double speed;
+        int delay;
+        double in, out;
+        int opacity;
+
+        //	OF_LOOP_NONE=0x01,
+        //	OF_LOOP_PALINDROME=0x02,
+        //	OF_LOOP_NORMAL=0x03
+
+        bool isPaused = false;
+        bool playing;
+        int loopMode;
+        bool loopStart;
+
+        int driveMode; // 0 : based on time // 1 : based on audio which controls it through delay param.
+    };
 }
 #endif // VIDEOHEADER_H_INCLUDED

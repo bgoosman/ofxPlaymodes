@@ -7,49 +7,54 @@
 
 #include "VideoGrabber.h"
 
-namespace ofxPm{
-VideoGrabber::VideoGrabber(){
-}
+namespace ofxPm {
+    VideoGrabber::VideoGrabber() {
+    }
 
-VideoGrabber::~VideoGrabber(){
-}
+    VideoGrabber::~VideoGrabber() {
+    }
 
-bool VideoGrabber::initGrabber(int w, int h){
-    isSetup = true;
-	bool ret = ofVideoGrabber::initGrabber(w,h,false);
-	frame = VideoFrame::newVideoFrame(getPixelsRef());
-	return ret;
-}
+    bool VideoGrabber::initGrabber(int w, int h) {
+        isSetup = true;
+        bool ret = ofVideoGrabber::setup(w, h, false);
+        frame = VideoFrame::newVideoFrame(getPixels());
+        return ret;
+    }
 
-VideoFrame VideoGrabber::getNextVideoFrame(){
-    return frame;
-}
+    bool VideoGrabber::initGrabberWithUpdate(int w, int h) {
+        isSetup = true;
+        bool ret = ofVideoGrabber::setup(w, h, false);
+        update();
+        return ret;
+    }
 
-void VideoGrabber::update(){
-    if (isSetup) {
-        ofVideoGrabber::update();
-        if(isFrameNew()){
-            newFrame(getPixelsRef());
+    VideoFrame VideoGrabber::getNextVideoFrame() {
+        return frame;
+    }
+
+    void VideoGrabber::update() {
+        if (isSetup) {
+            ofVideoGrabber::update();
+            if (isFrameNew()) {
+                newFrame(getPixels());
+            }
         }
     }
-}
 
-void VideoGrabber::newFrame(ofPixels & pixels){
-	frame = VideoFrame::newVideoFrame(pixels);
-	frame.getTextureRef();
-	newFrameEvent.notify(this,frame);
-}
+    void VideoGrabber::newFrame(ofPixels &pixels) {
+        frame = VideoFrame::newVideoFrame(pixels);
+        frame.getTextureRef();
+        newFrameEvent.notify(this, frame);
+    }
 
 //------------------------------------------------------
-float VideoGrabber::getFps(){
-	return fps;
-}
-	
+    float VideoGrabber::getFps() {
+        return fps;
+    }
+
 //------------------------------------------------------
-void VideoGrabber::setFps(float fps){
-	this->fps = fps;
-}
-	
-	;
-	
+    void VideoGrabber::setFps(float fps) {
+        this->fps = fps;
+    };
+
 }

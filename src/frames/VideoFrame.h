@@ -15,43 +15,60 @@
 #include "VideoFormat.h"
 #include <map>
 
-namespace ofxPm{
-class VideoFrame: public ofxPm::Frame, public ofEventArgs {
-    // create a video frame from an ofPixels
-	VideoFrame(const ofPixels & videoFrame);
-	VideoFrame(ofTexture & videoFrame);
-	VideoFrame(ofFbo & videoFrame);
-public:
-	VideoFrame();
-	static VideoFrame newVideoFrame(const ofPixels & videoFrame);
-	static VideoFrame newVideoFrame(ofTexture & videoFrame);
-	static VideoFrame newVideoFrame(ofFbo & videoFrame);
-	static VideoFrame newVideoFrame(VideoFrame videoFrame);
+namespace ofxPm {
+    class VideoFrame : public ofxPm::Frame, public ofEventArgs {
+        // create a video frame from an ofPixels
+        VideoFrame(const ofPixels &videoFrame);
 
-	virtual ~VideoFrame();
+        VideoFrame(ofTexture &videoFrame);
 
-    // returns pixels array
-	ofPixels & getPixelsRef();
-	ofTexture & getTextureRef();
-	ofFbo & getFboRef();
+        VideoFrame(ofFbo &videoFrame);
 
-	int getWidth();
-	int getHeight();
+    public:
+        VideoFrame();
 
-	operator void*();
+        static VideoFrame newVideoFrame(const ofPixels &videoFrame);
 
-	void setTextureOnly(bool texOnly);
+        static VideoFrame newVideoFrame(ofTexture &videoFrame);
 
-	static int getPoolSize(const VideoFormat & format);
-	static int getTotalNumFrames();
+        static VideoFrame newVideoFrame(ofFbo &videoFrame);
 
-    class Obj;
-    static map<VideoFormat, vector<ofPtr<Obj>>>* pool;
-private:
-	ofPtr<Obj> data;
-    static int total_num_frames;
-    static ofMutex poolMutex;
-    static void poolDeleter(Obj * obj);
-};
+        static VideoFrame newVideoFrame(VideoFrame videoFrame);
+
+        virtual ~VideoFrame();
+
+        void clear();
+
+        // returns pixels array
+        ofPixels &getPixelsRef();
+
+        ofTexture &getTextureRef();
+
+        ofFbo &getFboRef();
+
+        int getWidth();
+
+        int getHeight();
+
+        operator void *();
+
+        void setTextureOnly(bool texOnly);
+
+        static int getPoolSize(const VideoFormat &format);
+
+        static int getTotalNumFrames();
+
+        bool isAllocated();
+
+        class Obj;
+
+        static map<VideoFormat, vector<ofPtr<Obj>>> *pool;
+    private:
+        ofPtr<Obj> data;
+        static int total_num_frames;
+        static ofMutex poolMutex;
+
+        static void poolDeleter(Obj *obj);
+    };
 }
 #endif /* VIDEOFRAME_H_ */

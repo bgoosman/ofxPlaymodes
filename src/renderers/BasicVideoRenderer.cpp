@@ -29,13 +29,13 @@ BasicVideoRenderer::~BasicVideoRenderer() {
 	// TODO Auto-generated destructor stub
 }
 
-void BasicVideoRenderer::draw(){
+void BasicVideoRenderer::draw() {
 	VideoFrame frame = source->getNextVideoFrame();
-	if(frame!=NULL){
-		frame.getTextureRef().draw(0,0);
+	if (frame != NULL) {
+		frame.getTextureRef().draw(0, 0);
 	}
 }
-    
+
 ofTexture& BasicVideoRenderer::getNextTexture() {
     VideoFrame frame = source->getNextVideoFrame();
     return frame.getTextureRef();

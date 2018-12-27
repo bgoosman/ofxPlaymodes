@@ -20,6 +20,7 @@ public:
     virtual ~VideoGrabber();
 
     bool initGrabber(int w, int h);
+	bool initGrabberWithUpdate(int w, int h);
 
 	VideoFrame getNextVideoFrame();
     float getFps();
